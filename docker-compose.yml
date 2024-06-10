@@ -1,0 +1,26 @@
+version: '2.8'
+
+services:
+  app:
+    build: .
+    deploy:
+      mode: replicated
+      replicas: 6
+    ports:
+      - "${PORT}"
+    environment:
+      - PORT
+      - HOST
+  loadbalancer:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    expose:
+      - "${LOADBALANCER_PORT}:${LOADBALANCER_PORT}"
+    environment:
+      - LOADBALANCER_HOST
+      - LOADBALANCER_PORT
+      - PORT
+    depends_on:
+      - app
+    
