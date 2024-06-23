@@ -71,7 +71,7 @@ func home(c *gin.Context) {
 	var sb strings.Builder
 	sb.WriteString("<html><body><H1>Available Download Files</H1>")
 	for _, file := range fileList {
-		sb.WriteString("<a href=\"http://" + hostAssignment() + ":" + portAssignment() + "/download/" + file + "\">" + file + "</a>")
+		sb.WriteString("<a href=\"/download/" + file + "\">" + file + "</a>")
 		sb.WriteString("<br>")
 	}
 	sb.WriteString("</body></html>")
