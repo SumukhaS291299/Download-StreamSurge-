@@ -1,0 +1,6 @@
+from opensuse/leap:latest
+
+WORKDIR /usr/src/app
+COPY loadbalancer ./
+
+CMD ["/usr/src/app/loadbalancer"]
